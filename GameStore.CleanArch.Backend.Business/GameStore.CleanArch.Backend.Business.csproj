@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Registration\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameStore.CleanArch.Backend.Application\GameStore.CleanArch.Backend.Application.csproj" />
+  </ItemGroup>
+
 </Project>

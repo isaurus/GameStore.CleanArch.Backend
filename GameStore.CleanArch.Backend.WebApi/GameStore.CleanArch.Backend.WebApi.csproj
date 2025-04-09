@@ -4,10 +4,23 @@
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <DocumentationFile>GameStore.CleanArch.Backend</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Builders\" />
+    <Folder Include="Registration\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameStore.CleanArch.Backend.Business\GameStore.CleanArch.Backend.Business.csproj" />
+    <ProjectReference Include="..\GameStore.CleanArch.Backend.Infrastructure\GameStore.CleanArch.Backend.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

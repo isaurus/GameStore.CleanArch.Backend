@@ -6,4 +6,17 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\EntityA\Commands\" />
+    <Folder Include="Features\EntityA\Handlers\" />
+    <Folder Include="Features\EntityA\Validators\" />
+    <Folder Include="Features\EntityA\Queries\" />
+    <Folder Include="Mappings\" />
+    <Folder Include="Registration\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GameStore.CleanArch.Backend.Domain\GameStore.CleanArch.Backend.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
