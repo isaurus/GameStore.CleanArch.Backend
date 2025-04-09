@@ -1,0 +1,6 @@
+@GameStore.CleanArch.Backend.WebApi_HostAddress = http://localhost:5226
+
+GET {{GameStore.CleanArch.Backend.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
