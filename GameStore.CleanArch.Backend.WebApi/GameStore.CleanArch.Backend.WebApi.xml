@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GameStore.CleanArch.Backend.WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:GameStore.CleanArch.Backend.WebApi.Controllers.GameController">
+            <summary>
+            Controlador para las operaciones CRUD de 'Game'
+            </summary>
+        </member>
+        <member name="M:GameStore.CleanArch.Backend.WebApi.Controllers.GameController.PostGame(GameStore.CleanArch.Backend.Domain.Models.GameModel)">
+            <summary>
+            Crea un nuevo 'Game'
+            </summary>
+            <param name="model">El 'GameModel' recibido como 'request'</param>
+            <returns>¿?</returns>
+        </member>
+    </members>
+</doc>

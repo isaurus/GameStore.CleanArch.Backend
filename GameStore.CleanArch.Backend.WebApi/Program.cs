@@ -1,6 +1,12 @@
-
 using System.Reflection;
+using GameStore.CleanArch.Backend.Application.Registration;
+using GameStore.CleanArch.Backend.Business.Registration;
+using GameStore.CleanArch.Backend.Business.Services;
+using GameStore.CleanArch.Backend.Domain.Contracts.Repositories;
+using GameStore.CleanArch.Backend.Domain.Contracts.Services;
 using GameStore.CleanArch.Backend.Infrastructure.Context;
+using GameStore.CleanArch.Backend.Infrastructure.Registration;
+using GameStore.CleanArch.Backend.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -14,10 +20,10 @@ namespace GameStore.CleanArch.Backend.WebApi
 
             // Add services to the container.
 
-            // Registrar contexto
-            builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("Local"))
-            );
+            // Registro de servicios (directorios 'Registration')
+            builder.Services.AddApplicationServices(builder.Configuration);
+            builder.Services.AddBusinessServices();
+            builder.Services.AddInfrastructureServices(builder.Configuration);
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

@@ -1,24 +1,23 @@
-﻿using AutoMapper;
-using GameStore.CleanArch.Backend.Domain.Contracts.Repositories;
+﻿using GameStore.CleanArch.Backend.Application.Features.Game.Commands;
 using GameStore.CleanArch.Backend.Domain.Contracts.Services;
 using GameStore.CleanArch.Backend.Domain.Models;
+using MediatR;
 
 namespace GameStore.CleanArch.Backend.Business.Services
 {
     public class GameService : IGameService
     {
-        private readonly IGameRepository _repository;
-        private readonly IMapper _mapper;
+        private readonly IMediator _mediator;
 
-        public GameService(IGameRepository repository, IMapper mapper)
+        public GameService(IMediator mediator)
         {
-            _repository = repository;
-            _mapper = mapper;
+            _mediator = mediator;
         }
 
-        public async Task AddGameAsync(GameModel model)
+        public async Task<OkResponseModel> AddGameAsync(GameModel model)
         {
-            throw new NotImplementedException();
+            var result = await _mediator.Send(new CreateGameCommand(model));
+            return result;
         }
 
         public Task DeleteGameAsync(GameModel model)
@@ -26,10 +25,9 @@ namespace GameStore.CleanArch.Backend.Business.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<GameModel>> GetAllGamesAsync()    // VA CON EL MEDIATOR!!!!
+        public async Task<IEnumerable<GameModel>> GetAllGamesAsync()
         {
-            var games = await _repository.GetAllAsync();
-            return _mapper.Map<IEnumerable<GameModel>>(games);
+            throw new NotImplementedException();
         }
 
         public Task<GameModel?> GetGameByIdAsync(int id)

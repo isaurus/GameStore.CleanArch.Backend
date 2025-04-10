@@ -7,7 +7,7 @@ namespace GameStore.CleanArch.Backend.Domain.Contracts.Services
     {
         Task<IEnumerable<GameModel>> GetAllGamesAsync();
         Task<GameModel?> GetGameByIdAsync(int id);
-        Task AddGameAsync(GameModel model);
+        Task<OkResponseModel> AddGameAsync(GameModel model);
         Task UpdateGameAsync(GameModel model);
         Task DeleteGameAsync(GameModel model);
 
