@@ -9,12 +9,18 @@
             Controlador para las operaciones CRUD de 'Game'
             </summary>
         </member>
+        <member name="M:GameStore.CleanArch.Backend.WebApi.Controllers.GameController.GetAllGames">
+            <summary>
+            Obtiene todos los 'Games'
+            </summary>
+            <returns>Lista completa de 'Games' existentes</returns>
+        </member>
         <member name="M:GameStore.CleanArch.Backend.WebApi.Controllers.GameController.PostGame(GameStore.CleanArch.Backend.Domain.Models.GameModel)">
             <summary>
             Crea un nuevo 'Game'
             </summary>
             <param name="model">El 'GameModel' recibido como 'request'</param>
-            <returns>¿?</returns>
+            <returns></returns>
         </member>
     </members>
 </doc>

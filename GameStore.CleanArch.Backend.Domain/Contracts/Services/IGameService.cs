@@ -1,11 +1,11 @@
-﻿using GameStore.CleanArch.Backend.Domain.Entities;
+﻿using GameStore.CleanArch.Backend.API.Models;
 using GameStore.CleanArch.Backend.Domain.Models;
 
 namespace GameStore.CleanArch.Backend.Domain.Contracts.Services
 {
     public interface IGameService
     {
-        Task<IEnumerable<GameModel>> GetAllGamesAsync();
+        Task<IEnumerable<GameResponseModel>> GetAllGamesAsync();
         Task<GameModel?> GetGameByIdAsync(int id);
         Task<OkResponseModel> AddGameAsync(GameModel model);
         Task UpdateGameAsync(GameModel model);

@@ -1,4 +1,6 @@
-﻿using GameStore.CleanArch.Backend.Application.Features.Game.Commands;
+﻿using GameStore.CleanArch.Backend.API.Models;
+using GameStore.CleanArch.Backend.Application.Features.Game.Commands;
+using GameStore.CleanArch.Backend.Application.Features.Game.Queries;
 using GameStore.CleanArch.Backend.Domain.Contracts.Services;
 using GameStore.CleanArch.Backend.Domain.Models;
 using MediatR;
@@ -16,8 +18,7 @@ namespace GameStore.CleanArch.Backend.Business.Services
 
         public async Task<OkResponseModel> AddGameAsync(GameModel model)
         {
-            var result = await _mediator.Send(new CreateGameCommand(model));
-            return result;
+            return (OkResponseModel)await _mediator.Send(model);
         }
 
         public Task DeleteGameAsync(GameModel model)
@@ -25,9 +26,9 @@ namespace GameStore.CleanArch.Backend.Business.Services
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<GameModel>> GetAllGamesAsync()
+        public async Task<IEnumerable<GameResponseModel>> GetAllGamesAsync()
         {
-            throw new NotImplementedException();
+            return await _mediator.Send(new GetAllGamesQuery());
         }
 
         public Task<GameModel?> GetGameByIdAsync(int id)

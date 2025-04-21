@@ -3,20 +3,11 @@ using MediatR;
 
 namespace GameStore.CleanArch.Backend.Application.Features.Game.Commands
 {
-    // Este es el 'Request Object'
-    public class CreateGameCommand : IRequest<OkResponseModel> // IRequest<T> es la 'Response'
+    public class CreateGameCommand : IRequest<OkResponseModel>
     {
-        public GameModel Model { get; set; }
-        public CreateGameCommand(GameModel model)
-        {
-            Model = model;
-        }
-
-        /*
-        public string Title { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
+        public string Title { get; set; }
+        public string Description { get; set; }
         public DateTime Release { get; set; }
-        public decimal Price { get; set; }
-        */
+        public decimal Price { get; set; }   
     }
 }

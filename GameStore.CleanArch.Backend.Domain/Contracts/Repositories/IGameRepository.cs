@@ -4,7 +4,7 @@ namespace GameStore.CleanArch.Backend.Domain.Contracts.Repositories
 {
     public interface IGameRepository : IBaseRepository<Game>
     {
-        Task<IEnumerable<Game>> GetByTitleAsync(string title);
-        Task<IEnumerable<Game>> GetByReleaseYearAsync(int year);
+        Task<IEnumerable<Game?>> GetByTitleAsync(string title);
+        Task<IEnumerable<Game?>> GetByReleaseYearAsync(int year);
     }
 }

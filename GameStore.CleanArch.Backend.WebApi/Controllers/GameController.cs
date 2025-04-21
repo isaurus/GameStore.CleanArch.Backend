@@ -1,4 +1,5 @@
-﻿using GameStore.CleanArch.Backend.Domain.Contracts.Services;
+﻿using GameStore.CleanArch.Backend.API.Models;
+using GameStore.CleanArch.Backend.Domain.Contracts.Services;
 using GameStore.CleanArch.Backend.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,10 +19,26 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers
         }
 
         /// <summary>
+        /// Obtiene todos los 'Games'
+        /// </summary>
+        /// <returns>Lista completa de 'Games' existentes</returns>
+        [HttpGet]
+        [Route("")]
+        [ProducesResponseType(typeof(IEnumerable<GameResponseModel>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Produces("application/json")]
+        public async Task<IActionResult> GetAllGames()
+        {
+            var response = await _gameService.GetAllGamesAsync();
+            return Ok(response);    // Devuelve 'IEnumerable<GameResponseModel>'
+        }
+            
+
+        /// <summary>
         /// Crea un nuevo 'Game'
         /// </summary>
         /// <param name="model">El 'GameModel' recibido como 'request'</param>
-        /// <returns>¿?</returns>
+        /// <returns></returns>
         [HttpPost]
         [Route("")]
         [ProducesResponseType(typeof(GameModel), StatusCodes.Status201Created)]
@@ -29,10 +46,16 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Produces("application/json")]
-        public async Task<ActionResult<GameModel>> PostGame([FromBody] GameModel model)
+        public async Task<ActionResult> PostGame([FromBody] GameModel model)
         {
+            /*
             await _gameService.AddGameAsync(model);
-            return NoContent(); // CAMBIAR? > PARA ESO TENGO QUE IMPLEMENTAR EL GET
+            return NoContent();
+            */
+            
+            var response = await _gameService.AddGameAsync(model);
+            return Ok(response);    // Devuelve 'OkResponseModel'
+            
         }
     }
 }
