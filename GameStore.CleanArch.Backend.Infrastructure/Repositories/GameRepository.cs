@@ -1,5 +1,6 @@
 ﻿using GameStore.CleanArch.Backend.Domain.Contracts.Repositories;
 using GameStore.CleanArch.Backend.Domain.Entities;
+using GameStore.CleanArch.Backend.Domain.Models;
 using GameStore.CleanArch.Backend.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,10 +21,16 @@ namespace GameStore.CleanArch.Backend.Infrastructure.Repositories
         public async Task<Game?> GetByIdAsync(int id) =>
             await _context.Games.FindAsync(id);
 
-        public async Task AddAsync(Game entity)
+        public async Task<OkResponseModel> AddAsync(Game entity)
         {
             await _context.Games.AddAsync(entity);
-            await _context.SaveChangesAsync();
+            var test = await _context.SaveChangesAsync();
+
+            return new OkResponseModel
+            {
+                Id = test,
+                Message = "Juego creado con éxito."
+            };
         }
 
         public async Task UpdateAsync(Game entity)

@@ -6,20 +6,27 @@
     <members>
         <member name="T:GameStore.CleanArch.Backend.WebApi.Controllers.GameController">
             <summary>
-            Controlador para las operaciones CRUD de 'Game'
+            Controlador para las operaciones CRUD de Game
             </summary>
         </member>
         <member name="M:GameStore.CleanArch.Backend.WebApi.Controllers.GameController.GetAllGames">
             <summary>
-            Obtiene todos los 'Games'
+            Obtiene todos los Games
             </summary>
-            <returns>Lista completa de 'Games' existentes</returns>
+            <returns>Lista completa de Games existentes</returns>
+        </member>
+        <member name="M:GameStore.CleanArch.Backend.WebApi.Controllers.GameController.GetGameById(System.Int32)">
+            <summary>
+            Obtiene un Game específico por su ID
+            </summary>
+            <param name="idOrder"></param>
+            <returns>Datos completos del Game solicitado</returns>
         </member>
         <member name="M:GameStore.CleanArch.Backend.WebApi.Controllers.GameController.PostGame(GameStore.CleanArch.Backend.Domain.Models.GameModel)">
             <summary>
-            Crea un nuevo 'Game'
+            Crea un nuevo Game
             </summary>
-            <param name="model">El 'GameModel' recibido como 'request'</param>
+            <param name="model">El GameModel recibido como request</param>
             <returns></returns>
         </member>
     </members>

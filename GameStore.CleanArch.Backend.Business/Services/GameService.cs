@@ -18,7 +18,9 @@ namespace GameStore.CleanArch.Backend.Business.Services
 
         public async Task<OkResponseModel> AddGameAsync(GameModel model)
         {
-            return (OkResponseModel)await _mediator.Send(model);
+            var gameCommand = new CreateGameCommand(model.Title, model.Description, model.Release, model.Price);
+
+            return await _mediator.Send(gameCommand);
         }
 
         public Task DeleteGameAsync(GameModel model)
@@ -31,7 +33,7 @@ namespace GameStore.CleanArch.Backend.Business.Services
             return await _mediator.Send(new GetAllGamesQuery());
         }
 
-        public Task<GameModel?> GetGameByIdAsync(int id)
+        public Task<GameResponseModel?> GetGameByIdAsync(int id)
         {
             throw new NotImplementedException();
         }
