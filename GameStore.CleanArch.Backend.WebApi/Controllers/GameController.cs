@@ -13,6 +13,7 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers
     public class GameController : ControllerBase
     {
         private readonly IGameService _gameService;
+
         public GameController(IGameService gameService)
         {
             _gameService = gameService;
@@ -36,26 +37,26 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers
         /// <summary>
         /// Obtiene un Game específico por su ID
         /// </summary>
-        /// <param name="idOrder"></param>
+        /// <param name="idGame">El ID único del Game</param>
         /// <returns>Datos completos del Game solicitado</returns>
         [HttpGet]
-        [Route("{idOrder}")]
+        [Route("{idGame}")]
         [ProducesResponseType(typeof(GameResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Produces("application/json")]
-        public async Task<ActionResult> GetGameById([FromRoute] int idOrder)
+        public async Task<ActionResult> GetGameById([FromRoute] int idGame)
         {
-            return Ok(await _gameService.GetGameByIdAsync(idOrder));
+            var response = await _gameService.GetGameByIdAsync(idGame);
+            return Ok(response);
         }
-            
 
         /// <summary>
         /// Crea un nuevo Game
         /// </summary>
-        /// <param name="model">El GameModel recibido como request</param>
-        /// <returns></returns>
+        /// <param name="model">El GameModel recibido como request para crear</param>
+        /// <returns>OkResponseModel sobre el éxito/fracaso de la operación</returns>
         [HttpPost]
         [Route("")]
         [ProducesResponseType(typeof(OkResponseModel), StatusCodes.Status201Created)]
@@ -64,9 +65,29 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Produces("application/json")]
         public async Task<ActionResult> PostGame([FromBody] GameModel model)
-        {   
+        {
             var response = await _gameService.AddGameAsync(model);
             return Ok(response);
         }
+
+        /// <summary>
+        /// Actualiza un Game existente
+        /// </summary>
+        /// <param name="idGame">El ID único del Game</param>
+        /// <param name="model">El GameModel recibido como request para actualizar</param>
+        /// <returns>OkResponseModel sobre el éxito/fracaso de la operación</returns>
+        [HttpPut]
+        [Route("{idGame}")]
+        [ProducesResponseType(typeof(OkResponseModel), StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Produces("application/json")]
+        public async Task<IActionResult> PutGame([FromRoute] int idGame, [FromBody] GameModel model)
+        {
+            var response = await _gameService.UpdateGameAsync(idGame, model);
+            return Ok(response);
+        }
+        
     }
 }

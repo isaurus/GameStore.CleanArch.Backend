@@ -10,7 +10,7 @@ namespace GameStore.CleanArch.Backend.Business.Services
     public class GameService : IGameService
     {
         private readonly IMediator _mediator;
-
+        
         public GameService(IMediator mediator)
         {
             _mediator = mediator;
@@ -23,7 +23,7 @@ namespace GameStore.CleanArch.Backend.Business.Services
             return await _mediator.Send(gameCommand);
         }
 
-        public Task DeleteGameAsync(GameModel model)
+        public Task<OkResponseModel?> DeleteGameAsync(int id,  GameModel model)    // ¡IMPLEMENTAR!
         {
             throw new NotImplementedException();
         }
@@ -33,24 +33,26 @@ namespace GameStore.CleanArch.Backend.Business.Services
             return await _mediator.Send(new GetAllGamesQuery());
         }
 
-        public Task<GameResponseModel?> GetGameByIdAsync(int id)
+        public async Task<GameResponseModel?> GetGameByIdAsync(int id)
+        {
+            return await _mediator.Send(new GetGameByIdQuery(id));
+        }
+
+        public Task<IEnumerable<GameResponseModel>> GetGameByReleaseYearAsync(int year)     // ¡IMPLEMENTAR!
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<GameModel>> GetGameByReleaseYearAsync(int year)
+        public Task<IEnumerable<GameResponseModel>> GetGameByTitleAsync(string title)       // ¡IMPLEMENTAR!
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<GameModel>> GetGameByTitleAsync(string title)
+        public async Task<OkResponseModel?> UpdateGameAsync(int id, GameModel model)      // !VERIFICAR!
         {
-            throw new NotImplementedException();
-        }
+            var gameCommand = new UpdateGameCommand(id, model.Title, model.Description, model.Release, model.Price);
 
-        public Task UpdateGameAsync(GameModel model)
-        {
-            throw new NotImplementedException();
+            return await _mediator.Send(gameCommand);
         }
     }
 }

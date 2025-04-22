@@ -19,15 +19,23 @@
             <summary>
             Obtiene un Game específico por su ID
             </summary>
-            <param name="idOrder"></param>
+            <param name="idGame">El ID único del Game</param>
             <returns>Datos completos del Game solicitado</returns>
         </member>
         <member name="M:GameStore.CleanArch.Backend.WebApi.Controllers.GameController.PostGame(GameStore.CleanArch.Backend.Domain.Models.GameModel)">
             <summary>
             Crea un nuevo Game
             </summary>
-            <param name="model">El GameModel recibido como request</param>
-            <returns></returns>
+            <param name="model">El GameModel recibido como request para crear</param>
+            <returns>OkResponseModel sobre el éxito/fracaso de la operación</returns>
+        </member>
+        <member name="M:GameStore.CleanArch.Backend.WebApi.Controllers.GameController.PutGame(System.Int32,GameStore.CleanArch.Backend.Domain.Models.GameModel)">
+            <summary>
+            Actualiza un Game existente
+            </summary>
+            <param name="idGame">El ID único del Game</param>
+            <param name="model">El GameModel recibido como request para actualizar</param>
+            <returns>OkResponseModel sobre el éxito/fracaso de la operación</returns>
         </member>
     </members>
 </doc>

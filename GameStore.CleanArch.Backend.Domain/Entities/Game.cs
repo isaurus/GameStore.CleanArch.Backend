@@ -1,8 +1,7 @@
 ﻿namespace GameStore.CleanArch.Backend.Domain.Entities
 {
-    public class Game
+    public class Game : BaseEntity
     {
-        public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime Release { get; set; }

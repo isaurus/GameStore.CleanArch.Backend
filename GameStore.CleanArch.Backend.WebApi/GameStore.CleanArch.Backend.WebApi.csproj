@@ -19,4 +19,8 @@
     <ProjectReference Include="..\GameStore.CleanArch.Backend.Infrastructure\GameStore.CleanArch.Backend.Infrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Swagger\" />
+  </ItemGroup>
+
 </Project>

@@ -8,12 +8,12 @@ namespace GameStore.CleanArch.Backend.Domain.Contracts.Services
         Task<IEnumerable<GameResponseModel>> GetAllGamesAsync();
         Task<GameResponseModel?> GetGameByIdAsync(int id);
         Task<OkResponseModel> AddGameAsync(GameModel model);
-        Task UpdateGameAsync(GameModel model);
-        Task DeleteGameAsync(GameModel model);
+        Task<OkResponseModel?> UpdateGameAsync(int id, GameModel model);
+        Task<OkResponseModel?> DeleteGameAsync(int id, GameModel model);
 
 
 
-        Task<IEnumerable<GameModel>> GetGameByTitleAsync(string title);
-        Task<IEnumerable<GameModel>> GetGameByReleaseYearAsync(int year);
+        Task<IEnumerable<GameResponseModel>> GetGameByTitleAsync(string title);
+        Task<IEnumerable<GameResponseModel>> GetGameByReleaseYearAsync(int year);
     }
 }

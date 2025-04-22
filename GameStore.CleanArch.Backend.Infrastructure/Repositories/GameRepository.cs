@@ -18,24 +18,28 @@ namespace GameStore.CleanArch.Backend.Infrastructure.Repositories
         public async Task<IEnumerable<Game>> GetAllAsync() =>
             await _context.Games.ToListAsync();
 
-        public async Task<Game?> GetByIdAsync(int id) =>
+        public async Task<Game?> GetByIdAsync(int id) =>    // ¿FirstOrDefaultAsync(g => g.Id == id)?
             await _context.Games.FindAsync(id);
 
-        public async Task<OkResponseModel> AddAsync(Game entity)
+        public async Task AddAsync(Game entity)    
         {
             await _context.Games.AddAsync(entity);
-            var test = await _context.SaveChangesAsync();
-
-            return new OkResponseModel
-            {
-                Id = test,
-                Message = "Juego creado con éxito."
-            };
+            await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(Game entity)
+        public async Task UpdateAsync(int id, Game entity)      // ¡VERIFICAR!
         {
-            _context.Games.Update(entity);
+            var existingGame = await _context.Games.FindAsync(id);
+            if (existingGame == null)
+            {
+                throw new KeyNotFoundException($"Juego con ID {id} no se encuentra.");
+            }
+            
+            existingGame.Title = entity.Title;
+            existingGame.Description = entity.Description;
+            existingGame.Release = entity.Release;
+            existingGame.Price = entity.Price;
+
             await _context.SaveChangesAsync();
         }
 

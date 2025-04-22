@@ -1,13 +1,12 @@
 ﻿namespace GameStore.CleanArch.Backend.Domain.Models
 {
     /// <summary>
-    /// 'Model' (DTO) para 'Game'.
+    /// 'Model' (DTO) para Game.
     /// </summary>
     public class GameModel
-    {
-        
+    {       
         /// <summary>
-        /// El ID único del 'Game'.
+        /// El ID único del Game.
         /// </summary>
         /// <example>9</example>
         public int Id { get; set; }

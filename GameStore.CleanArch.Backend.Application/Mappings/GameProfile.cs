@@ -21,6 +21,9 @@ namespace GameStore.CleanArch.Backend.Application.Mappings
 
             CreateMap<CreateGameCommand, Game>()
                 .ReverseMap();
+
+            CreateMap<UpdateGameCommand, Game>()
+                .ReverseMap();
         }
     }
 }
