@@ -17,7 +17,17 @@ namespace GameStore.CleanArch.Backend.Application.Mappings
                 .ReverseMap();
 
             CreateMap<Game, GameResponseModel>()
-                .ReverseMap();
+            .ForMember(dest => dest.ShortDescription, opt =>
+                opt.MapFrom(src =>
+                    !string.IsNullOrEmpty(src.Description)
+                        ? (src.Description.Length > 50
+                            ? src.Description.Substring(0, 50) + "..."
+                            : src.Description)
+                        : string.Empty))
+            .ForMember(dest => dest.ReleaseYear, opt =>
+                opt.MapFrom(src => src.Release.ToString("dd/MM/yyyy")))
+            .ForMember(dest => dest.FormattedPrice, opt =>
+                opt.MapFrom(src => src.Price.ToString("C", System.Globalization.CultureInfo.CurrentCulture)));
 
             CreateMap<CreateGameCommand, Game>()
                 .ReverseMap();
