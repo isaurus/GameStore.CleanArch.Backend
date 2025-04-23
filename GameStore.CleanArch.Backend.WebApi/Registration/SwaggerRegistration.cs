@@ -1,4 +1,5 @@
 ﻿using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 using System.Reflection;
 
 namespace GameStore.CleanArch.Backend.WebApi.Registration
@@ -17,6 +18,7 @@ namespace GameStore.CleanArch.Backend.WebApi.Registration
                 // FALTA AÑADIR 'AddSecurityDefinitions' y 'AddSecurityRequirement'
                 services.AddSwaggerGen(c =>
                 {
+                    c.ExampleFilters();
                     c.SwaggerDoc("v1", new OpenApiInfo
                     {
                         Version = "v1",

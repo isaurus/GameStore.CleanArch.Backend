@@ -67,6 +67,7 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        
         [Produces("application/json")]
         public async Task<ActionResult> PostGame([FromBody] GameModel model)
         {
