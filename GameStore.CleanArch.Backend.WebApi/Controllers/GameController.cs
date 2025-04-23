@@ -21,6 +21,7 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers
             _gameService = gameService;
         }
 
+        // MIRAR BIEN LOS CÓDIGOS DE RESPUESTA EN CADA ENDPOINT
         // Lecturas sobre Status Codes y ActionResult vs IActionResult
         // https://learn.microsoft.com/es-es/azure/architecture/best-practices/api-design
         // https://learn.microsoft.com/es-es/aspnet/core/web-api/action-return-types?view=aspnetcore-9.0#actionresult-vs-iactionresult
