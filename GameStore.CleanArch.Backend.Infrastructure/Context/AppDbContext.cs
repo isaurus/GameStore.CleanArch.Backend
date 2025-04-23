@@ -1,5 +1,6 @@
 ﻿using GameStore.CleanArch.Backend.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GameStore.CleanArch.Backend.Infrastructure.Context
 {
@@ -13,6 +14,13 @@ namespace GameStore.CleanArch.Backend.Infrastructure.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            // Conversor de DateOnly <-> DateTime
+            var dateOnlyConverter = new ValueConverter<DateOnly, DateTime>(
+                d => d.ToDateTime(TimeOnly.MinValue),
+                d => DateOnly.FromDateTime(d)
+            );
+
             modelBuilder.Entity<Game>(entity =>
             {
                 entity.ToTable("Game");
@@ -28,7 +36,8 @@ namespace GameStore.CleanArch.Backend.Infrastructure.Context
                     .HasMaxLength(255);
 
                 entity.Property(g => g.Release)
-                    .IsRequired();
+                    .IsRequired()
+                    .HasConversion(dateOnlyConverter); // Conversor
 
                 entity.Property(g => g.Price)
                     .HasColumnType("decimal(5, 2)")
