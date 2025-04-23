@@ -13,7 +13,8 @@ namespace GameStore.CleanArch.Backend.Application.Features.Game
         IRequestHandler<GetAllGamesQuery, IEnumerable<GameResponseModel>>,
         IRequestHandler<GetGameByIdQuery, GameResponseModel?>,
         IRequestHandler<CreateGameCommand, OkResponseModel>,
-        IRequestHandler<UpdateGameCommand, OkResponseModel?>
+        IRequestHandler<UpdateGameCommand, OkResponseModel?>,
+        IRequestHandler<DeleteGameCommand, OkResponseModel?>
     {
 
         private readonly IMapper _mapper;
@@ -58,6 +59,17 @@ namespace GameStore.CleanArch.Backend.Application.Features.Game
             {
                 Id = game.Id,
                 Message = "Juego actualizado con éxito."
+            };
+        }
+
+        public async Task<OkResponseModel?> Handle(DeleteGameCommand request, CancellationToken cancellationToken)
+        {
+            await _gameRepository.DeleteAsync(request.Id);
+
+            return new OkResponseModel
+            {
+                Id = null,
+                Message = "Juego borrad con éxito."
             };
         }
     }

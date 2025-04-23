@@ -5,12 +5,6 @@
     /// </summary>
     public class GameModel
     {       
-        /// <summary>
-        /// El ID único del Game.
-        /// </summary>
-        /// <example>9</example>
-        public int Id { get; set; }
-        
 
         /// <summary>
         /// Título del 'Game' (Máx. 50 caracteres).

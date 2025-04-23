@@ -27,7 +27,7 @@ namespace GameStore.CleanArch.Backend.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAsync(int id, Game entity)      // ¡VERIFICAR!
+        public async Task UpdateAsync(int id, Game entity)
         {
             var existingGame = await _context.Games.FindAsync(id);
             if (existingGame == null)
@@ -43,9 +43,11 @@ namespace GameStore.CleanArch.Backend.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(Game entity)
+        public async Task DeleteAsync(int id)
         {
-            _context.Games.Remove(entity);
+            var game = await _context.Games.FindAsync(id);
+            _context.Games.Remove(game);
+
             await _context.SaveChangesAsync();
         }
 

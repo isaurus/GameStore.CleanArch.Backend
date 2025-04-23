@@ -19,6 +19,10 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers
             _gameService = gameService;
         }
 
+        // Lecturas sobre Status Codes y ActionResult vs IActionResult
+        // https://learn.microsoft.com/es-es/azure/architecture/best-practices/api-design
+        // https://learn.microsoft.com/es-es/aspnet/core/web-api/action-return-types?view=aspnetcore-9.0#actionresult-vs-iactionresult
+
         /// <summary>
         /// Obtiene todos los Games
         /// </summary>
@@ -28,7 +32,7 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers
         [ProducesResponseType(typeof(IEnumerable<GameResponseModel>), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Produces("application/json")]
-        public async Task<IActionResult> GetAllGames()
+        public async Task<ActionResult> GetAllGames()
         {
             var response = await _gameService.GetAllGamesAsync();
             return Ok(response);
@@ -67,8 +71,16 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers
         public async Task<ActionResult> PostGame([FromBody] GameModel model)
         {
             var response = await _gameService.AddGameAsync(model);
-            return Ok(response);
+            return Ok(response);    // ¿LOCATION HEADER?
         }
+
+
+
+
+        // ¡IMPLEMENTAR PATCH!
+
+
+
 
         /// <summary>
         /// Actualiza un Game existente
@@ -83,11 +95,23 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [Produces("application/json")]
-        public async Task<IActionResult> PutGame([FromRoute] int idGame, [FromBody] GameModel model)
+        public async Task<ActionResult> PutGame([FromRoute] int idGame, [FromBody] GameModel model)
         {
             var response = await _gameService.UpdateGameAsync(idGame, model);
             return Ok(response);
         }
         
+
+        [HttpDelete]
+        [Route("{idGame}")]
+        [ProducesResponseType(typeof(OkResponseModel), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        [Produces("application/json")]
+        public async Task<ActionResult> DeleteGame([FromRoute] int idGame)
+        {
+            var response = await _gameService.DeleteGameAsync(idGame);
+            return Ok(response);
+        }
     }
 }

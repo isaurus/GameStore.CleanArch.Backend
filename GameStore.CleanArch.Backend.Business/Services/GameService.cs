@@ -20,22 +20,24 @@ namespace GameStore.CleanArch.Backend.Business.Services
         {
             var gameCommand = new CreateGameCommand(model.Title, model.Description, model.Release, model.Price);
 
-            return await _mediator.Send(gameCommand);
+            return await _mediator.Send(gameCommand, default(CancellationToken));
         }
 
-        public Task<OkResponseModel?> DeleteGameAsync(int id,  GameModel model)    // ¡IMPLEMENTAR!
+        public async Task<OkResponseModel?> DeleteGameAsync(int id)    // ¡IMPLEMENTAR!
         {
-            throw new NotImplementedException();
+            var gameCommand = new DeleteGameCommand(id);
+
+            return await _mediator.Send(gameCommand, default(CancellationToken));
         }
 
         public async Task<IEnumerable<GameResponseModel>> GetAllGamesAsync()
         {
-            return await _mediator.Send(new GetAllGamesQuery());
+            return await _mediator.Send(new GetAllGamesQuery(), default(CancellationToken));
         }
 
         public async Task<GameResponseModel?> GetGameByIdAsync(int id)
         {
-            return await _mediator.Send(new GetGameByIdQuery(id));
+            return await _mediator.Send(new GetGameByIdQuery(id), default(CancellationToken));
         }
 
         public Task<IEnumerable<GameResponseModel>> GetGameByReleaseYearAsync(int year)     // ¡IMPLEMENTAR!
@@ -52,7 +54,7 @@ namespace GameStore.CleanArch.Backend.Business.Services
         {
             var gameCommand = new UpdateGameCommand(id, model.Title, model.Description, model.Release, model.Price);
 
-            return await _mediator.Send(gameCommand);
+            return await _mediator.Send(gameCommand, default(CancellationToken));
         }
     }
 }

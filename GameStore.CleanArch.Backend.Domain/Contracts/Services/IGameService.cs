@@ -9,7 +9,7 @@ namespace GameStore.CleanArch.Backend.Domain.Contracts.Services
         Task<GameResponseModel?> GetGameByIdAsync(int id);
         Task<OkResponseModel> AddGameAsync(GameModel model);
         Task<OkResponseModel?> UpdateGameAsync(int id, GameModel model);
-        Task<OkResponseModel?> DeleteGameAsync(int id, GameModel model);
+        Task<OkResponseModel?> DeleteGameAsync(int id);
 
 
 

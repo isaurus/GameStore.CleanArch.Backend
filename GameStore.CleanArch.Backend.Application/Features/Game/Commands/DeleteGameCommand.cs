@@ -1,6 +1,15 @@
-﻿namespace GameStore.CleanArch.Backend.Application.Features.Game.Commands
+﻿using GameStore.CleanArch.Backend.Domain.Models;
+using MediatR;
+
+namespace GameStore.CleanArch.Backend.Application.Features.Game.Commands
 {
-    public class DeleteGameCommand
+    public class DeleteGameCommand : IRequest<OkResponseModel?>
     {
+        public int Id{ get; set; }
+
+        public DeleteGameCommand(int id)
+        {
+            Id = id;
+        }
     }
 }

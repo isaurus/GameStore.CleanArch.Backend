@@ -3,7 +3,7 @@ using MediatR;
 
 namespace GameStore.CleanArch.Backend.Application.Features.Game.Commands
 {
-    public class UpdateGameCommand : IRequest<OkResponseModel?>     // ¡VERIFICAR!
+    public class UpdateGameCommand : IRequest<OkResponseModel?>
     {
         public int Id { get; set; }
         public string Title { get; set; }
