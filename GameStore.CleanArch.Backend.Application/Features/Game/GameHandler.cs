@@ -69,7 +69,7 @@ namespace GameStore.CleanArch.Backend.Application.Features.Game
             return new OkResponseModel
             {
                 Id = null,
-                Message = "Juego borrad con éxito."
+                Message = "Juego borrado con éxito."
             };
         }
     }

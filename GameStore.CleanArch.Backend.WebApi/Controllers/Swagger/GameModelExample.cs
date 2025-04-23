@@ -18,16 +18,4 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers.Swagger
             };
         }
     }
-
-    [ExcludeFromCodeCoverage]
-    public class GameModelListExample : IExamplesProvider<IEnumerable<GameModel>>
-    {
-        public IEnumerable<GameModel> GetExamples()
-        {
-            return new List<GameModel>
-            {
-                new GameModelExample().GetExamples()
-            };
-        }
-    }
 }

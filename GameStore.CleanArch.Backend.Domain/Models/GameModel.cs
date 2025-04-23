@@ -1,33 +1,29 @@
 ﻿namespace GameStore.CleanArch.Backend.Domain.Models
 {
     /// <summary>
-    /// 'Model' (DTO) para Game.
+    /// Modelo de la entidad Game para las request. Recibido por algunos de los endpoints en el controller.
     /// </summary>
     public class GameModel
     {       
 
         /// <summary>
-        /// Título del 'Game' (Máx. 50 caracteres).
+        /// Título del Game (Máx. 50 caracteres).
         /// </summary>
-        /// <example>The Last Of Us 2</example>
         public string Title { get; set; } = string.Empty;
 
         /// <summary>
-        /// Descripción del 'Game' (Máx. 255 caracteres).
+        /// Descripción del Game (Máx. 255 caracteres).
         /// </summary>
-        /// <example>¿Preparado para el apocalipsis?</example>
         public string Description { get; set; } = string.Empty;
 
         /// <summary>
         /// Fecha de lanzamiento.
         /// </summary>
-        /// <example>19/06/2020</example>
         public DateOnly Release { get; set; }
 
         /// <summary>
-        /// Precio del 'Game' (Máx. 50 caracteres).
+        /// Precio del Game (Máx. 50 caracteres).
         /// </summary>
-        /// <example>59.99</example>
         public decimal Price { get; set; }
     }
 }

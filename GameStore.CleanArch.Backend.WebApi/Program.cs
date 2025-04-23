@@ -24,7 +24,6 @@ namespace GameStore.CleanArch.Backend.WebApi
             builder.Services.AddBusinessServices();
             builder.Services.AddInfrastructureServices(builder.Configuration);
             builder.Services.AddSwaggerServices();
-            builder.Services.AddSwaggerExamplesFromAssemblyOf<GameModelExample>();
 
             builder.Services.AddFluentValidation(conf =>
                 conf.RegisterValidatorsFromAssemblyContaining<Application.Features.Game.Validators.GameModelValidator>());

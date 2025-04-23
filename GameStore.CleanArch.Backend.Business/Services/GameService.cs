@@ -23,7 +23,7 @@ namespace GameStore.CleanArch.Backend.Business.Services
             return await _mediator.Send(gameCommand, default(CancellationToken));
         }
 
-        public async Task<OkResponseModel?> DeleteGameAsync(int id)    // ¡IMPLEMENTAR!
+        public async Task<OkResponseModel?> DeleteGameAsync(int id)
         {
             var gameCommand = new DeleteGameCommand(id);
 
@@ -52,6 +52,8 @@ namespace GameStore.CleanArch.Backend.Business.Services
 
         public async Task<OkResponseModel?> UpdateGameAsync(int id, GameModel model)      // !VERIFICAR!
         {
+
+            // LLAMAR A GETBYID
             var gameCommand = new UpdateGameCommand(id, model.Title, model.Description, model.Release, model.Price);
 
             return await _mediator.Send(gameCommand, default(CancellationToken));

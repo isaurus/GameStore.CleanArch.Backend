@@ -40,10 +40,12 @@ namespace GameStore.CleanArch.Backend.WebApi.Registration
                     // Configuración para XML Comments
                     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFilename);
+                    var domainXml = Path.Combine(AppContext.BaseDirectory, "GameStore.CleanArch.Backend.Domain.xml");
 
-                    if (File.Exists(xmlPath))
+                    if (File.Exists(xmlPath) && File.Exists(domainXml))
                     {
                         c.IncludeXmlComments(xmlPath);
+                        c.IncludeXmlComments(domainXml);    // ¡NUEVO!
                     }
                     else
                     {
@@ -51,6 +53,8 @@ namespace GameStore.CleanArch.Backend.WebApi.Registration
                         Console.WriteLine($"XML documentation file not found: {xmlPath}");
                     }
                 });
+
+                services.AddSwaggerExamplesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());     // ¡NUEVO!
             }
 
             return services;
