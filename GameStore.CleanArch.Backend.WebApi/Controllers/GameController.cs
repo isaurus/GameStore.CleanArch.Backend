@@ -1,7 +1,9 @@
 ﻿using GameStore.CleanArch.Backend.API.Models;
 using GameStore.CleanArch.Backend.Domain.Contracts.Services;
 using GameStore.CleanArch.Backend.Domain.Models;
+using GameStore.CleanArch.Backend.WebApi.Controllers.Swagger;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace GameStore.CleanArch.Backend.WebApi.Controllers
 {
@@ -67,7 +69,7 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        
+        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(GameModelExample))]
         [Produces("application/json")]
         public async Task<ActionResult> PostGame([FromBody] GameModel model)
         {
@@ -101,8 +103,12 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers
             var response = await _gameService.UpdateGameAsync(idGame, model);
             return Ok(response);
         }
-        
 
+        /// <summary>
+        /// Elimina un Game según el ID proporcionado
+        /// </summary>
+        /// <param name="idGame">El ID único del Game</param>
+        /// <returns>OkResponseModel sobre el éxito/fracaso de la operación</returns>
         [HttpDelete]
         [Route("{idGame}")]
         [ProducesResponseType(typeof(OkResponseModel), StatusCodes.Status204NoContent)]

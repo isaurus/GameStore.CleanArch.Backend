@@ -37,5 +37,12 @@
             <param name="model">El GameModel recibido como request para actualizar</param>
             <returns>OkResponseModel sobre el éxito/fracaso de la operación</returns>
         </member>
+        <member name="M:GameStore.CleanArch.Backend.WebApi.Controllers.GameController.DeleteGame(System.Int32)">
+            <summary>
+            Elimina un Game según el ID proporcionado
+            </summary>
+            <param name="idGame">El ID único del Game</param>
+            <returns>OkResponseModel sobre el éxito/fracaso de la operación</returns>
+        </member>
     </members>
 </doc>

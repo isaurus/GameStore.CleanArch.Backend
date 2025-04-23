@@ -13,7 +13,7 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers.Swagger
             {
                 Title = "The Last Of Us 2",
                 Description = "15 años después, nada es lo mismo",
-                Release = new DateTime(2020, 6, 19),
+                Release = new DateOnly(2020, 6, 19),
                 Price = 59.99M
             };
         }

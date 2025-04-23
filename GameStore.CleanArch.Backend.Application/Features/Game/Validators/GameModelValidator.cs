@@ -18,7 +18,7 @@ namespace GameStore.CleanArch.Backend.Application.Features.Game.Validators
 
             RuleFor(x => x.Release)
                 .NotEmpty().WithMessage("La fecha de lanzamiento es requerida")
-                .LessThanOrEqualTo(DateTime.Today).WithMessage("La fecha de lanzamiento no puede ser futura");
+                .LessThanOrEqualTo(DateOnly.FromDateTime(DateTime.Today));
 
             RuleFor(x => x.Price)
                 .GreaterThan(0).WithMessage("El precio debe ser mayor que 0")

@@ -22,7 +22,7 @@
         /// Fecha de lanzamiento.
         /// </summary>
         /// <example>19/06/2020</example>
-        public DateTime Release { get; set; }
+        public DateOnly Release { get; set; }
 
         /// <summary>
         /// Precio del 'Game' (Máx. 50 caracteres).

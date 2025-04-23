@@ -6,6 +6,8 @@ using GameStore.CleanArch.Backend.WebApi.Registration;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 
 using FluentValidation.AspNetCore;
+using Swashbuckle.AspNetCore.Filters;
+using GameStore.CleanArch.Backend.WebApi.Controllers.Swagger;
 
 namespace GameStore.CleanArch.Backend.WebApi
 {
@@ -22,6 +24,7 @@ namespace GameStore.CleanArch.Backend.WebApi
             builder.Services.AddBusinessServices();
             builder.Services.AddInfrastructureServices(builder.Configuration);
             builder.Services.AddSwaggerServices();
+            builder.Services.AddSwaggerExamplesFromAssemblyOf<GameModelExample>();
 
             builder.Services.AddFluentValidation(conf =>
                 conf.RegisterValidatorsFromAssemblyContaining<Application.Features.Game.Validators.GameModelValidator>());
