@@ -73,7 +73,7 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [SwaggerRequestExample(typeof(GameModel), typeof(GameModelExample))]                // ¡NUEVO!
-        [SwaggerResponseExample(StatusCodes.Status200OK, typeof(OkResponseModelExample))]
+        [SwaggerResponseExample(StatusCodes.Status201Created, typeof(OkResponseModelExample))]
         [Produces("application/json")]
         public async Task<ActionResult> PostGame([FromBody] GameModel model)
         {
@@ -97,7 +97,7 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers
         /// <returns>OkResponseModel sobre el éxito/fracaso de la operación</returns>
         [HttpPut]
         [Route("{idGame}")]
-        [ProducesResponseType(typeof(OkResponseModel), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(OkResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -117,7 +117,7 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers
         /// <returns>OkResponseModel sobre el éxito/fracaso de la operación</returns>
         [HttpDelete]
         [Route("{idGame}")]
-        [ProducesResponseType(typeof(OkResponseModel), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(OkResponseModel), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         [SwaggerResponseExample(StatusCodes.Status200OK, typeof(OkResponseModelExample))]
