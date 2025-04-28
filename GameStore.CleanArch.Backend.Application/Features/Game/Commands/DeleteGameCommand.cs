@@ -3,13 +3,8 @@ using MediatR;
 
 namespace GameStore.CleanArch.Backend.Application.Features.Game.Commands
 {
-    public class DeleteGameCommand : IRequest<OkResponseModel?>
+    public class DeleteGameCommand(int id) : IRequest<OkResponseModel?>
     {
-        public int Id{ get; set; }
-
-        public DeleteGameCommand(int id)
-        {
-            Id = id;
-        }
+        public int Id { get; set; } = id;
     }
 }

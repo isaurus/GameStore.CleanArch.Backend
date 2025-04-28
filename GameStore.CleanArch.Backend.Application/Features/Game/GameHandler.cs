@@ -16,7 +16,6 @@ namespace GameStore.CleanArch.Backend.Application.Features.Game
         IRequestHandler<UpdateGameCommand, OkResponseModel?>,
         IRequestHandler<DeleteGameCommand, OkResponseModel?>
     {
-
         private readonly IMapper _mapper;
         private readonly IGameRepository _gameRepository;
 
@@ -40,7 +39,7 @@ namespace GameStore.CleanArch.Backend.Application.Features.Game
 
         public async Task<OkResponseModel> Handle(CreateGameCommand request, CancellationToken cancellationToken)
         {
-            var game = _mapper.Map<Domain.Entities.Game>(request);
+            var game = _mapper.Map<Domain.Entities.Game>(request.Model);
             await _gameRepository.AddAsync(game);
 
             return new OkResponseModel 
@@ -52,12 +51,17 @@ namespace GameStore.CleanArch.Backend.Application.Features.Game
 
         public async Task<OkResponseModel?> Handle(UpdateGameCommand request, CancellationToken cancellationToken)
         {
-            var game = _mapper.Map<Domain.Entities.Game>(request);
-            await _gameRepository.UpdateAsync(request.Id, game);
+
+            var existingGame = await _gameRepository.GetByIdAsync(request.Id)
+                ?? throw new KeyNotFoundException($"Juego con id {request.Id} no se encuentra"); 
+
+            _mapper.Map(request.Model, existingGame);
+
+            await _gameRepository.UpdateAsync(request.Id, existingGame);
 
             return new OkResponseModel
             {
-                Id = game.Id,
+                Id = request.Id,
                 Message = "Juego actualizado con éxito."
             };
         }

@@ -18,12 +18,19 @@ namespace GameStore.CleanArch.Backend.Business.Services
 
         public async Task<OkResponseModel> AddGameAsync(GameModel model)
         {
-            var gameCommand = new CreateGameCommand(model.Title, model.Description, model.Release, model.Price);
+            var gameCommand = new CreateGameCommand(model);
 
             return await _mediator.Send(gameCommand, default(CancellationToken));
         }
 
-        public async Task<OkResponseModel?> DeleteGameAsync(int id)
+        public async Task<OkResponseModel?> UpdateGameAsync(int id, GameModel model)
+        {
+            var gameCommand = new UpdateGameCommand(id, model);
+
+            return await _mediator.Send(gameCommand, default(CancellationToken));
+        }
+
+        public async Task<OkResponseModel?> DeleteGameAsync(int id)     // ¡MODIFICAR CON CONDICIÓN PARA BORRADO!
         {
             var gameCommand = new DeleteGameCommand(id);
 
@@ -48,15 +55,6 @@ namespace GameStore.CleanArch.Backend.Business.Services
         public Task<IEnumerable<GameResponseModel>> GetGameByTitleAsync(string title)       // ¡IMPLEMENTAR!
         {
             throw new NotImplementedException();
-        }
-
-        public async Task<OkResponseModel?> UpdateGameAsync(int id, GameModel model)      // !VERIFICAR!
-        {
-
-            // LLAMAR A GETBYID
-            var gameCommand = new UpdateGameCommand(id, model.Title, model.Description, model.Release, model.Price);
-
-            return await _mediator.Send(gameCommand, default(CancellationToken));
         }
     }
 }

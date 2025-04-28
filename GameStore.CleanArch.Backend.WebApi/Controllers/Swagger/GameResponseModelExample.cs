@@ -13,7 +13,9 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers.Swagger
             Title = "Celeste",
             ShortDescription = "Una aventura de plataformas sobre la superación personal.",
             ReleaseYear = "2018",
-            FormattedPrice = "14,99 €"
+            FormattedPrice = "14,99 €",
+            CreatedAt = DateTime.Now,
+            UpdatedAt = DateTime.Now,
         };
     }
 }

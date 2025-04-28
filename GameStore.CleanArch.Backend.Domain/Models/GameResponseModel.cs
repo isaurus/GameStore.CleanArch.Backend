@@ -29,5 +29,15 @@
         /// El precio del Game solicitado.
         /// </summary>
         public string FormattedPrice { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Fecha de creación del Game.
+        /// </summary>
+        public DateTime CreatedAt { get; set; }
+
+        /// <summary>
+        /// Fecha de actualización del Game.
+        /// </summary>
+        public DateTime UpdatedAt { get; set; }
     }
 }

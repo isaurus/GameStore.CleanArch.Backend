@@ -75,7 +75,7 @@ namespace GameStore.CleanArch.Backend.WebApi.Controllers
         [SwaggerRequestExample(typeof(GameModel), typeof(GameModelExample))]                // ¡NUEVO!
         [SwaggerResponseExample(StatusCodes.Status201Created, typeof(OkResponseModelExample))]
         [Produces("application/json")]
-        public async Task<ActionResult> PostGame([FromBody] GameModel model)
+        public async Task<ActionResult> PostGame([FromBody] GameModel model)     
         {
             var response = await _gameService.AddGameAsync(model);
             return Ok(response);    // ¿LOCATION HEADER?

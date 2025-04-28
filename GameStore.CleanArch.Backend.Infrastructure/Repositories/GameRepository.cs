@@ -1,6 +1,5 @@
 ﻿using GameStore.CleanArch.Backend.Domain.Contracts.Repositories;
 using GameStore.CleanArch.Backend.Domain.Entities;
-using GameStore.CleanArch.Backend.Domain.Models;
 using GameStore.CleanArch.Backend.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,35 +17,31 @@ namespace GameStore.CleanArch.Backend.Infrastructure.Repositories
         public async Task<IEnumerable<Game>> GetAllAsync() =>
             await _context.Games.ToListAsync();
 
-        public async Task<Game?> GetByIdAsync(int id) =>    // ¿FirstOrDefaultAsync(g => g.Id == id)?
+        public async Task<Game?> GetByIdAsync(int id) =>
             await _context.Games.FindAsync(id);
 
         public async Task AddAsync(Game entity)    
         {
             await _context.Games.AddAsync(entity);
+
             await _context.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(int id, Game entity)
         {
-            var existingGame = await _context.Games.FindAsync(id);
-            if (existingGame == null)
-            {
-                throw new KeyNotFoundException($"Juego con ID {id} no se encuentra.");
-            }
-            
-            existingGame.Title = entity.Title;
-            existingGame.Description = entity.Description;
-            existingGame.Release = entity.Release;
-            existingGame.Price = entity.Price;
+            _context.Set<Game>().Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
+            _context.Entry(entity).Property(x => x.CreatedAt).IsModified = false;
 
-            await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();          
         }
 
-        public async Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)       // CREAR CONDICIÓN IF PARA BORRAR REAL O NO (VIENE DE SERVICIO)
         {
-            var game = await _context.Games.FindAsync(id);
-            _context.Games.Remove(game);
+            var game = await  GetByIdAsync(id);
+
+            game.IsEnabled = false;
+            game.DeletedTimeUtc = DateTime.UtcNow;
 
             await _context.SaveChangesAsync();
         }

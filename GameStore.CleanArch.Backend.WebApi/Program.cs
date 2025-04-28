@@ -6,8 +6,6 @@ using GameStore.CleanArch.Backend.WebApi.Registration;
 using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
 
 using FluentValidation.AspNetCore;
-using Swashbuckle.AspNetCore.Filters;
-using GameStore.CleanArch.Backend.WebApi.Controllers.Swagger;
 
 namespace GameStore.CleanArch.Backend.WebApi
 {
