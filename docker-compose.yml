@@ -8,9 +8,11 @@ services:
     container_name: sqlserver  # Nombre del contenedor
     environment:
       # Definir la contraseña del usuario 'sa' (SuperAdmin). Debe cumplir con las políticas de seguridad de SQL Server.
-      - SA_PASSWORD=YourStrong!Passw0rd
+      - SA_PASSWORD=PasswordSQLServer2025
       # Aceptar el acuerdo de licencia de SQL Server
       - ACCEPT_EULA=Y
+      - PUID=1000
+      - PGID=1000
     volumes:
       # Volumen persistente para almacenar los datos de SQL Server, asegurando que los datos sobrevivan al reiniciar el contenedor.
       - sqlvolume:/var/opt/mssql 
@@ -30,8 +32,8 @@ services:
     image: game-store-api:latest
     container_name: game-store-api  # Nombre del contenedor
     ports:
-      # Mapear el puerto 8080 del contenedor al puerto 8080 del host para la comunicación HTTP.
-      - "8080:8080"
+      # Mapear el puerto 8082 del contenedor al puerto 8080 del host para la comunicación HTTP.
+      - "8082:8080"
     depends_on:
       # Establece que este contenedor depende del servicio 'sqlserver', asegurando que SQL Server esté listo antes de iniciar la API.
       - sqlserver   
@@ -41,6 +43,7 @@ services:
     networks:
       # Conectar la API a la misma red 'appnetwork' para que pueda comunicarse con el contenedor de SQL Server.
       - appnetwork
+    command: /bin/bash -c "dotnet ef database update && dotnet GameStore.CleanArch.Backend.WebApi.dll"  # Aplica las migraciones y luego arranca la API
 
 # Definición de redes
 networks:
