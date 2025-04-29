@@ -29,6 +29,9 @@ COPY ["GameStore.CleanArch.Backend.WebApi/GameStore.CleanArch.Backend.WebApi.csp
 # Restaura las dependencias de los proyectos copiados anteriormente. 'dotnet restore' descarga e instala todos los paquetes NuGet necesarios.
 RUN dotnet restore "GameStore.CleanArch.Backend.WebApi/GameStore.CleanArch.Backend.WebApi.csproj"
 
+# Instala las herramientas de EF globalmente
+RUN dotnet tool install --global dotnet-ef
+
 # Copia el resto del código fuente al contenedor
 COPY . .
 
