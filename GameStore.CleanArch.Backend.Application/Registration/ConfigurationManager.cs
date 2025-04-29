@@ -6,7 +6,6 @@ namespace GameStore.CleanArch.Backend.Application.Registration
     {
         public static IConfiguration? Configuration { get; set; }
 
-        // ESTE MÉTODO ES DE DEEPSEEK
         #region Swagger
         public static bool SwaggerEnabled
         {
@@ -20,7 +19,6 @@ namespace GameStore.CleanArch.Backend.Application.Registration
             }
         }
         #endregion Swagger
-        // ESTE MÉTODO ES DE DEEPSEEK
 
         #region ConnectionStrings
 
@@ -29,6 +27,14 @@ namespace GameStore.CleanArch.Backend.Application.Registration
             get
             {
                 return Configuration != null ? Configuration["ConnectionStrings:DefaultConnection"] : string.Empty;
+            }
+        }
+
+        public static string? Docker
+        {
+            get
+            {
+                return Configuration != null ? Configuration["ConnectionStrings:DockerConnection"] : string.Empty ;
             }
         }
 
