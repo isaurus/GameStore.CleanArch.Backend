@@ -43,7 +43,7 @@ services:
     networks:
       # Conectar la API a la misma red 'appnetwork' para que pueda comunicarse con el contenedor de SQL Server.
       - appnetwork
-    command: /bin/bash -c "dotnet ef database update && dotnet GameStore.CleanArch.Backend.WebApi.dll"  # Aplica las migraciones y luego arranca la API
+    # command: /bin/bash -c "dotnet ef database update && dotnet GameStore.CleanArch.Backend.WebApi.dll"  # Aplica las migraciones y luego arranca la API
 
 # Definición de redes
 networks:

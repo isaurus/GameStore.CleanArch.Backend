@@ -30,7 +30,7 @@ COPY ["GameStore.CleanArch.Backend.WebApi/GameStore.CleanArch.Backend.WebApi.csp
 RUN dotnet restore "GameStore.CleanArch.Backend.WebApi/GameStore.CleanArch.Backend.WebApi.csproj"
 
 # Instala las herramientas de EF globalmente
-RUN dotnet tool install --global dotnet-ef
+# RUN dotnet tool install --global dotnet-ef
 
 # Copia el resto del código fuente al contenedor
 COPY . .
