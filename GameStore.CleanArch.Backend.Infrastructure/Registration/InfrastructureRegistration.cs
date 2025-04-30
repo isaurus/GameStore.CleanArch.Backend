@@ -14,7 +14,8 @@ namespace GameStore.CleanArch.Backend.Infrastructure.Registration
         {
             //services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConfigurationManager.LocalDB));
             //services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConfigurationManager.RemoteDockerSQLServer));
-            services.AddDbContext<AppDbContext>(options => options.UseNpgsql(ConfigurationManager.RemoteDockerPostgreSQL));
+            //services.AddDbContext<AppDbContext>(options => options.UseNpgsql(ConfigurationManager.RemoteDockerPostgreSQL));
+            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConfigurationManager.RemoteDockerSQLServer));
 
             services.AddScoped<IGameRepository, GameRepository>();
 

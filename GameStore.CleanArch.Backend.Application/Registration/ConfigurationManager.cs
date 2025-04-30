@@ -34,7 +34,7 @@ namespace GameStore.CleanArch.Backend.Application.Registration
         {
             get
             {
-                return Configuration != null ? Configuration["ConnectionStrings:DockerConnection"] : string.Empty ;
+                return Configuration != null ? Configuration["ConnectionStrings:RemoteSQLServerConnection"] : string.Empty ;
             }
         }
 
