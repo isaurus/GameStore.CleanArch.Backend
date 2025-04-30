@@ -7,6 +7,8 @@ services:
     build:
       context: .
       dockerfile: GameStore.CleanArch.Backend.WebApi/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
     ports:
       - "8082:8080"
 
