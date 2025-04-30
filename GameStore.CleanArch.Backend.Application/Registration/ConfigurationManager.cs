@@ -30,7 +30,7 @@ namespace GameStore.CleanArch.Backend.Application.Registration
             }
         }
 
-        public static string? Docker
+        public static string? RemoteDockerSQLServer
         {
             get
             {
