@@ -46,6 +46,14 @@ namespace GameStore.CleanArch.Backend.Application.Registration
             }
         }
 
+        public static string? SQLPlus
+        {
+            get
+            {
+                return Configuration != null ? Configuration["ConnectionStrings:SQLServerConnectionPlus"] : string.Empty;
+            }
+        }
+
     }
     #endregion ConnectionStrings
 
