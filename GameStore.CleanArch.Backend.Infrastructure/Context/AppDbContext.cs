@@ -14,12 +14,15 @@ namespace GameStore.CleanArch.Backend.Infrastructure.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             // Conversor de DateOnly <-> DateTime
             var dateOnlyConverter = new ValueConverter<DateOnly, DateTime>(
                 d => d.ToDateTime(TimeOnly.MinValue),
                 d => DateOnly.FromDateTime(d)
             );
+
+            // Modificación de queries para borrado lógico
+            modelBuilder.Entity<Game>()
+                .HasQueryFilter(a => a.IsEnabled);
 
             modelBuilder.Entity<Game>(entity =>
             {

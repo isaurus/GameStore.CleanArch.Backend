@@ -29,11 +29,14 @@ namespace GameStore.CleanArch.Backend.Application.Mappings
             .ForMember(dest => dest.FormattedPrice, opt =>
                 opt.MapFrom(src => src.Price.ToString("C", System.Globalization.CultureInfo.CurrentCulture)));
 
+            /*
             CreateMap<CreateGameCommand, Game>()
                 .ReverseMap();
-
+            */
+            /*
             CreateMap<UpdateGameCommand, Game>()
                 .ReverseMap();
+            */
         }
     }
 }

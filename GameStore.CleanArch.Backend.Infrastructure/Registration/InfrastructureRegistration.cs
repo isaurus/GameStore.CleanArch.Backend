@@ -13,6 +13,7 @@ namespace GameStore.CleanArch.Backend.Infrastructure.Registration
         public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConfigurationManager.LocalDB));
+            //services.AddDbContext<AppDbContext>(options => options.UseSqlServer(ConfigurationManager.RemoteDockerSQLServer));
 
             services.AddScoped<IGameRepository, GameRepository>();
 
