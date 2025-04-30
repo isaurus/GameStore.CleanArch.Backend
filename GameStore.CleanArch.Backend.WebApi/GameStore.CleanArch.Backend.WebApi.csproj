@@ -7,6 +7,9 @@
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <DocumentationFile>GameStore.CleanArch.Backend.WebApi.xml</DocumentationFile>
 	<NoWarn>$(NoWarn);1591</NoWarn>
+	<UserSecretsId>b203ffb4-9cf2-4a5a-9cb5-59be2f646239</UserSecretsId>
+	<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+	<DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +19,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="8.0.2" />
   </ItemGroup>
@@ -23,10 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\GameStore.CleanArch.Backend.Business\GameStore.CleanArch.Backend.Business.csproj" />
     <ProjectReference Include="..\GameStore.CleanArch.Backend.Infrastructure\GameStore.CleanArch.Backend.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Swagger\" />
   </ItemGroup>
 
 </Project>

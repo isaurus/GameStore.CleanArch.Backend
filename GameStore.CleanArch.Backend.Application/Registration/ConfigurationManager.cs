@@ -38,6 +38,14 @@ namespace GameStore.CleanArch.Backend.Application.Registration
             }
         }
 
+        public static string? RemoteDockerPostgreSQL
+        {
+            get
+            {
+                return Configuration != null ? Configuration["ConnectionStrings:RemotePostgreSQLConnection"] : string.Empty;
+            }
+        }
+
     }
     #endregion ConnectionStrings
 
