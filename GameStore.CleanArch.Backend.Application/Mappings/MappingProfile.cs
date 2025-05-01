@@ -6,14 +6,14 @@ using GameStore.CleanArch.Backend.Domain.Models;
 
 namespace GameStore.CleanArch.Backend.Application.Mappings
 {
-    public class GameProfile : Profile
+    public class MappingProfile : Profile
     {
-        public GameProfile()
+        public MappingProfile()
         {
             CreateMap<Game, GameModel>()
                 .ReverseMap();
 
-            CreateMap<GameModel, GameResponseModel>()
+            CreateMap<GameModel, GameResponseModel>()   // ¿NECESARIO?
                 .ReverseMap();
 
             CreateMap<Game, GameResponseModel>()
@@ -29,14 +29,15 @@ namespace GameStore.CleanArch.Backend.Application.Mappings
             .ForMember(dest => dest.FormattedPrice, opt =>
                 opt.MapFrom(src => src.Price.ToString("C", System.Globalization.CultureInfo.CurrentCulture)));
 
-            /*
-            CreateMap<CreateGameCommand, Game>()
+            CreateMap<Game, GameModel>()
                 .ReverseMap();
-            */
-            /*
-            CreateMap<UpdateGameCommand, Game>()
+
+            CreateMap<UserModel, UserResponseModel>()
                 .ReverseMap();
-            */
+
+            CreateMap<User, UserResponseModel>()    // ¿NECESARIO?
+                .ReverseMap();
+
         }
     }
 }

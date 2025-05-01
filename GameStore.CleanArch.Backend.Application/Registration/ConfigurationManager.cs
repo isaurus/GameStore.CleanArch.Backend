@@ -30,27 +30,27 @@ namespace GameStore.CleanArch.Backend.Application.Registration
             }
         }
 
-        public static string? RemoteDockerSQLServer
+        public static string? DockerSQLServer
         {
             get
             {
-                return Configuration != null ? Configuration["ConnectionStrings:RemoteSQLServerConnection"] : string.Empty ;
+                return Configuration != null ? Configuration["ConnectionStrings:DockerSQLServerConnection"] : string.Empty ;
             }
         }
 
-        public static string? RemoteDockerPostgreSQL
+        public static string? DockerPostgreSQL
         {
             get
             {
-                return Configuration != null ? Configuration["ConnectionStrings:RemotePostgreSQLConnection"] : string.Empty;
+                return Configuration != null ? Configuration["ConnectionStrings:DockerPostgreSQLConnection"] : string.Empty;
             }
         }
 
-        public static string? SQLPlus
+        public static string? LocalSQLPlus
         {
             get
             {
-                return Configuration != null ? Configuration["ConnectionStrings:SQLServerConnectionPlus"] : string.Empty;
+                return Configuration != null ? Configuration["ConnectionStrings:LocalSQLServerConnectionPlus"] : string.Empty;
             }
         }
 

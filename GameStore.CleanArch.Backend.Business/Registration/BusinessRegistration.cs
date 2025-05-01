@@ -9,6 +9,7 @@ namespace GameStore.CleanArch.Backend.Business.Registration
         public static IServiceCollection AddBusinessServices(this IServiceCollection services)
         {
             services.AddScoped<IGameService, GameService>();
+            services.AddScoped<IUserService, UserService>();
 
             return services;
         }

@@ -1,6 +1,4 @@
-﻿using GameStore.CleanArch.Backend.WebApi.Extensions;
-
-namespace GameStore.CleanArch.Backend.WebApi.Builders
+﻿namespace GameStore.CleanArch.Backend.WebApi.Builders
 {
     public static class SwaggerBuilder
     {
@@ -12,7 +10,6 @@ namespace GameStore.CleanArch.Backend.WebApi.Builders
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
-                app.ApplyMigrations();
             }
 
             return app;

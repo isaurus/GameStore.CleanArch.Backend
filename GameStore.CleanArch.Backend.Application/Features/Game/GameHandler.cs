@@ -9,21 +9,15 @@ using MediatR;
 
 namespace GameStore.CleanArch.Backend.Application.Features.Game
 {
-    public class GameHandler :
+    public class GameHandler(IMapper mapper, IGameRepository gameRepository) :
         IRequestHandler<GetAllGamesQuery, IEnumerable<GameResponseModel>>,
         IRequestHandler<GetGameByIdQuery, GameResponseModel?>,
         IRequestHandler<CreateGameCommand, OkResponseModel>,
         IRequestHandler<UpdateGameCommand, OkResponseModel?>,
         IRequestHandler<DeleteGameCommand, OkResponseModel?>
     {
-        private readonly IMapper _mapper;
-        private readonly IGameRepository _gameRepository;
-
-        public GameHandler(IMapper mapper, IGameRepository gameRepository)
-        {
-            _gameRepository = gameRepository;
-            _mapper = mapper;
-        }
+        private readonly IMapper _mapper = mapper;
+        private readonly IGameRepository _gameRepository = gameRepository;
 
         public async Task<IEnumerable<GameResponseModel>> Handle(GetAllGamesQuery request, CancellationToken cancellationToken)
         {
